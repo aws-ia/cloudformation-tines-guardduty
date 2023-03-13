@@ -1,0 +1,9 @@
+// Replace the <n> in each row to specify the number of resources used in this deployment. Remove the rows for resources that aren’t used.
+|===
+|Resource |This deployment uses
+
+// Space needed to maintain table headers
+|https://docs.aws.amazon.com/general/latest/gr/guardduty.html[GuardDuty] |1
+|https://docs.aws.amazon.com/general/latest/gr/sns.html[SNS] |1
+|https://docs.aws.amazon.com/general/latest/gr/ev.html[EventBridge] |0
+|===

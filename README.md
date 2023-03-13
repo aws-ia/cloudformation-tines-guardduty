@@ -1,1 +1,5 @@
-# cloudformation-tines-guardduty
+# Tines - GuardDuty Finding Triage and Response
+
+For architectural details, step-by-step instructions, and customization options, see the [deployment guide](/).
+
+To post feedback, submit feature ideas, or report bugs, use the **Issues** section of this GitHub repo. 

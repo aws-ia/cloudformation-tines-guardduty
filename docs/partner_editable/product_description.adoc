@@ -1,0 +1,21 @@
+// Replace the content in <>
+// Briefly describe the software. Use consistent and clear branding. 
+// Include the benefits of using the software on AWS, and provide details on usage scenarios.
+
+=== About Tines
+
+The world's best companies - from startups to the Fortune 10 - trust Tines to manage their mission-critical workflows. Designed for and by security/IT practitioners, Tines helps you automate workflows of endless complexity by breaking them down into simple steps.
+
+What makes us different? Tines is an exceptionally powerful and flexible platform, capable of automating the most complex workflows. However, it's also no-code - meaning that frontline team members can build and maintain automation themselves, without depending on the development team.
+
+Typical automation workflows that our customers deploy:
+
+- endpoint detection & response alerts
+- abuse response
+- phishing response
+- employee onboarding
+- vulnerability management
+- threat intel enrichment
+- fraud response
+- suspicious login alerts
+- Slack/Microsoft Teams bots

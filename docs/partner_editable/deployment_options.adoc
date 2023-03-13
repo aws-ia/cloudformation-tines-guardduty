@@ -1,0 +1,7 @@
+// Edit this placeholder text to accurately describe your architecture.
+
+This Quick Start provides one deployment option:
+
+* *Deploy {partner-product-short-name} GuardDuty template*. This option enables both Amazon GuardDuty, Amazon EventBridge rules, Amazon SNS topic and subscription as a single deployment.
+
+The Quick Start provides separate templates for these options.
