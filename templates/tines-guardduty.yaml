@@ -1,0 +1,158 @@
+Parameters:
+  WebhookAddress:
+    Type: String
+    Description: Enter the Tines webhook address the SNS subscription will send to.
+
+Resources:
+  rLambdaLogGroup:
+    Type: 'AWS::Logs::LogGroup'
+    DeletionPolicy: Delete
+    Properties:
+      RetentionInDays: 7
+      LogGroupName: /aws/lambda/resource-checker
+  rLambdaCheckerLambdaRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: !Sub 'resource-checker-lambda-role-${AWS::Region}'
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: 'sts:AssumeRole'
+      Path: /
+      Policies:
+        - PolicyName: !Sub 'resource-checker-lambda-policy-${AWS::Region}'
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Sid: CreateLogGroup
+                Effect: Allow
+                Action:
+                  - 'logs:CreateLogGroup'
+                  - 'logs:CreateLogStream'
+                  - 'logs:PutLogEvents'
+                  - 'iam:CreateServiceLinkedRole'
+                  - 'cloudformation:CreateStack'
+                  - 'cloudformation:DeleteStack'
+                  - 'cloudformation:Desc*'
+                  - 'guardduty:CreateDetector'
+                  - 'guardduty:ListDetectors'
+                  - 'guardduty:DeleteDetector'
+                Resource: '*'
+  resourceCheckerLambda:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      Description: Checks for resource type enabled and possibly name to exist
+      FunctionName: resource-checker
+      Handler: index.lambda_handler
+      Role: !GetAtt 
+        - rLambdaCheckerLambdaRole
+        - Arn
+      Runtime: python3.8
+      MemorySize: 128
+      Timeout: 180
+      Code:
+        ZipFile: |
+          import boto3
+          import os
+          import json
+          from botocore.exceptions import ClientError
+          import cfnresponse
+
+
+          guardduty=boto3.client('guardduty')
+          cfn=boto3.client('cloudformation')
+
+
+          def lambda_handler(event, context):
+              print('Event: ', event)
+              if 'RequestType' in event:    
+                if event['RequestType'] in ["Create","Update"]:
+                    enabled=False
+                    try:  
+                      response=guardduty.list_detectors()
+                      if "DetectorIds" in response and len(response["DetectorIds"])>0:
+                        enabled="AlreadyEnabled"
+                      elif "DetectorIds" in response and len(response["DetectorIds"])==0:
+                        cfn_response=cfn.create_stack(
+                          StackName='guardduty-cfn-stack',
+                          TemplateBody='{ "AWSTemplateFormatVersion": "2010-09-09",    "Description": "A sample GuardDuty template",    "Resources": { "IRWorkshopGuardDutyDetector": {  "Type": "AWS::GuardDuty::Detector",    "Properties": {   "Enable": true  }   } } }'
+                          )
+                        enabled="True"
+                    except Exception as e:
+                        print("Exception: ",e)
+                    responseData = {}
+                    responseData['status'] = enabled
+                    cfnresponse.send(event, context, cfnresponse.SUCCESS, responseData, "CustomResourcePhysicalID" )
+                elif event['RequestType'] == "Delete":
+                    cfn_response=cfn.delete_stack(
+                            StackName='guardduty-cfn-stack')
+                    cfnresponse.send(event, context, cfnresponse.SUCCESS, {})
+  CheckResourceExist:
+    Type: 'Custom::LambdaCustomResource'
+    Properties:
+      ServiceToken: !GetAtt 
+        - resourceCheckerLambda
+        - Arn
+
+  EventRule:
+    Type: "AWS::Events::Rule"
+    Properties:
+      Name: "tines-guardduty-finding"
+      Description: "A CloudWatch Event Rule that triggers on Amazon GuardDuty findings. The Event Rule is used to send GuardDuty findings to SNS and Tines."
+      State: "ENABLED"
+      Targets:
+        - Arn:
+            Ref: "GuardDutySNSTopic"
+          Id: "target-id1"
+      EventPattern:
+        detail-type:
+          - "GuardDuty Finding"
+        source:
+          - "aws.guardduty"
+
+  GuardDutySNSTopic:
+    Type: 'AWS::SNS::Topic'
+    Properties:
+      DisplayName: tines-guardduty-event-topic
+      TopicName: tines-guardduty-event-topic
+      Subscription:
+        - Endpoint: !Ref WebhookAddress
+          Protocol: 'https'
+
+  SnsTopicPolicyEventRule:
+    Type: "AWS::SNS::TopicPolicy"
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Sid: "__default_statement_ID"
+            Effect: "Allow"
+            Principal:
+              AWS: "*"
+            Action:
+              - "SNS:GetTopicAttributes"
+              - "SNS:SetTopicAttributes"
+              - "SNS:AddPermission"
+              - "SNS:RemovePermission"
+              - "SNS:DeleteTopic"
+              - "SNS:Subscribe"
+              - "SNS:ListSubscriptionsByTopic"
+              - "SNS:Publish"
+              - "SNS:Receive"
+            Resource:
+              Ref: "GuardDutySNSTopic"
+            Condition:
+              StringEquals:
+                AWS:SourceOwner:
+                  Ref: "AWS::AccountId"
+          - Sid: "TrustEventBridgeToPublishEventsToMyTopic"
+            Effect: "Allow"
+            Principal:
+              Service: "events.amazonaws.com"
+            Action: "sns:Publish"
+            Resource:
+              Ref: "GuardDutySNSTopic"
+      Topics:
+        - Ref: "GuardDutySNSTopic"
