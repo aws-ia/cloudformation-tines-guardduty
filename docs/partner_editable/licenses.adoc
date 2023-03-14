@@ -1,0 +1,3 @@
+// Include details about the license and how they can sign up. If no license is required, clarify that. 
+
+This Quick Start is available to Tines customers of all pricing plans. If you are not currently a Tines customer, you can register for a free account on the https://login.tines.com[Tines login page^]. For information on payment plans, see the Tines https://aws.amazon.com/marketplace/pp/prodview-s4qz57qacdgqs[AWS Marketplace page^].
