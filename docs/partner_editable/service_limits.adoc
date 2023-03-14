@@ -5,5 +5,6 @@
 // Space needed to maintain table headers
 |https://docs.aws.amazon.com/general/latest/gr/guardduty.html[GuardDuty] |1
 |https://docs.aws.amazon.com/general/latest/gr/sns.html[SNS] |1
+|https://docs.aws.amazon.com/general/latest/gr/lambda.html[Lambda] |1
 |https://docs.aws.amazon.com/general/latest/gr/ev.html[EventBridge] |0
 |===

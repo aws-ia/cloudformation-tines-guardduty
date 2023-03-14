@@ -29,7 +29,8 @@ For more information, see https://docs.aws.amazon.com/AWSCloudFormation/latest/U
 
 * https://docs.aws.amazon.com/cloudformation/[AWS CloudFormation^]
 * https://aws.amazon.com/guardduty/[Amazon GuardDuty^]
-* https://aws.amazon.com/sns//[Amazon Simple Notification Service (SNS)^]
+* https://aws.amazon.com/lambda/[AWS Lambda^]
+* https://aws.amazon.com/sns/[Amazon Simple Notification Service (SNS)^]
 * https://aws.amazon.com/eventbridge/[AWS EventBridge^]
 
 === Tines documentation
@@ -43,6 +44,6 @@ For more information, see https://docs.aws.amazon.com/AWSCloudFormation/latest/U
 
 == Troubleshooting
 
-For Snyk-specific troubleshooting, see the https://support.snyk.io/hc/en-us[Snyk Knowledge Center].
+For Tines-specific troubleshooting, see the https://www.tines.com/hub[Tines Hub].
 
 For troubleshooting AWS CloudFormation stacks, see https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html[Troubleshooting AWS CloudFormation].

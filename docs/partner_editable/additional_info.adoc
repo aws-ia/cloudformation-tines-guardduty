@@ -4,26 +4,20 @@
 == Test the deployment
 // If steps are required to test the deployment, add them here. If not, remove the heading
 
-=== Snyk integration with Amazon ECR
-. Log in to your Snyk account.
-. Go to *Projects*,  select *Add projects*, and then select *Amazon ECR*.
-. Select single or multiple images.
-. Select *Add selected repositories*.
+=== Receive GuardDuty findings in Tines
+. Open the GuardDuty console at https://console.aws.amazon.com/guardduty/.
+. In the navigation pane, choose Settings.
+. On the Settings page, under Sample findings, choose Generate sample findings.
+. Wait for Findings to be sent to the Tines webhook.
 
-For more information, see https://support.snyk.io/hc/en-us/articles/360003947077-Amazon-Elastic-Container-Registry-ECR-add-images-to-Snyk[Amazon Elastic Container Registry (ECR): add images to Snyk^].
-
-=== Snyk integration with AWS Lambda
-. Log in to your Snyk account.
-. Go to *Projects*, select *Add projects*, and then select *AWS Lambda*.
-. Select the relevant functions.
-. Select *Add selected functions*.
-
-NOTE: Snyk currently supports integration with AWS Lambda for Node, Ruby, and Java projects.
-
-For more information, see https://support.snyk.io/hc/en-us/articles/360004002418-AWS-Lambda-integration[AWS Lambda integration^].
-
-// == Post-deployment steps
+== Post-deployment steps
 // If post-deployment steps are required, add them here. If not, remove the heading
+
+=== Create an AWS Credential in Tines
+. Open the GuardDuty console at https://console.aws.amazon.com/guardduty/.
+. In the navigation pane, choose Settings.
+. On the Settings page, under Sample findings, choose Generate sample findings.
+. Wait for Findings to be sent to the Tines webhook.
 
 // == Best practices for using {partner-product-short-name} on AWS
 // Provide post-deployment best practices for using the technology on AWS, including considerations such as migrating data, backups, ensuring high performance, high availability, etc. Link to software documentation for detailed information.
