@@ -1,0 +1,43 @@
+project:
+  name: cloudformation-tines-guardduty
+  owner: quickstart-eng@amazon.com
+  shorten_stack_name: true
+  regions:
+    - af-south-1
+    - ap-east-1
+    - ap-northeast-1
+    - ap-northeast-2
+    - ap-northeast-3
+    - ap-south-1
+    - ap-south-2
+    - ap-southeast-1
+    - ap-southeast-2
+    - ap-southeast-3
+    - ap-southeast-4
+    - ca-central-1
+    - eu-central-1
+    - eu-central-2
+    - eu-north-1
+    - eu-south-1
+    - eu-south-2
+    - eu-west-1
+    - eu-west-2
+    - eu-west-3
+    - me-central-1
+    - me-south-1
+    - sa-east-1
+    - us-east-1
+    - us-east-2
+    - us-west-1
+    - us-west-2
+    - us-gov-east-1
+    - us-gov-west-1
+    - cn-north-1
+    - cn-northwest-1
+tests:
+  defaults:
+    parameters:
+      WebhookAddress: 'https://hq.tines.io/webhook/7fc6950ab8a46d88f0e93c5291975b2e/f21e13ca4b89dc7fc6da97bf0fe23945'
+    regions:
+      - eu-west-1
+    template: templates/tines-guardduty.yaml

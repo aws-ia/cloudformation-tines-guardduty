@@ -1,9 +1,0 @@
-// Replace the content in <>
-// Identify your target audience and explain how/why they would use this Quick Start.
-// Avoid borrowing text from third-party websites (copying text from AWS service documentation is fine). Also, avoid marketing-speak, focusing instead on the technical aspect.
-
-This guide provides instructions for deploying the {partner-product-short-name} Quick Start reference architecture on the AWS Cloud.
-
-Tines’ no-code automation helps the world’s best companies transform complex security workflows to their advantage. Our intuitive platform brings together business critical processes across internal and external systems.
-
-This Quick Start is for cybersecurity teams and other roles within an organization that build, deploy, and maintain AWS security posture.
