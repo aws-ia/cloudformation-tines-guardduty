@@ -1,6 +1,6 @@
 :partner-solution-project-name: cloudformation-tines-guardduty
 :partner-solution-github-org: aws-quickstart
-:partner-product-name: Tines
+:partner-product-name: Tines GuardDuty
 :partner-product-short-name: Tines
 :partner-company-name: Tines
 :doc-month: March
