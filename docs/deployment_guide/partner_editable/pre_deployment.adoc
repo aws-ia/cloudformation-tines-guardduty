@@ -1,5 +1,4 @@
-//Include any predeployment steps here, such as signing up for a Marketplace AMI or making any changes to a partner account. If there are no predeployment steps, leave this file empty.
-
 == Predeployment steps
+Before you deploy this Partner Solution, import the Tines story https://www.tines.com/story-library/109230/aws-quick-start-using-guardduty-findings-and-remedation-actions[AWS Partner Solution using GuardDuty findings and remediation actions^] into your Tines tenant.
 
-Import the https://www.tines.com/story-library/109230/aws-quick-start-using-guardduty-findings-and-remedation-actions[Tines Quickstart Story^] into your Tines tenant.
+//TODO Is the partner correcting the spelling of "remedation" in this URL or leaving it as is?
