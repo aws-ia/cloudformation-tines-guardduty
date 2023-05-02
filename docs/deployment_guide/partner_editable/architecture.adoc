@@ -12,6 +12,6 @@ As shown in <<architecture1>>, this Partner Solution sets up the following:
 * An AWS CloudFormation stack that creates the infrastructure.
 * An AWS Lambda function that enables GuardDuty in the selected AWS Region if it is not already enabled.
 * An AWS Identity and Access Management (IAM) role for the Lambda function to assume.
-* Amazon GuardDuty to detect threats.
-* Amazon EventBridge rules that sends GuardDuty findings to a Amazon Simple Notification Service (Amazon SNS) topic.
+* GuardDuty to detect threats.
+* Amazon EventBridge rules that send GuardDuty findings to an Amazon Simple Notification Service (Amazon SNS) topic.
 * An SNS topic that delivers the GuardDuty findings to a Tines webhook address.
