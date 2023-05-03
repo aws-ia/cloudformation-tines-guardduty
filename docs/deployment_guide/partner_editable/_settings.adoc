@@ -6,7 +6,7 @@
 :doc-month: May
 :doc-year: 2023
 :partner-contributors: John Tuckner, {partner-company-name}
-// :other-contributors: Akua Mansa, Trek10
+// :other-contributors: Akua Lansa, Trek10
 //:aws-contributors: Janine Singh, AWS IoT Partner team
 :aws-ia-contributors: Dave May, AWS Integration & Automation team
 :deployment_time: 15 minutes
