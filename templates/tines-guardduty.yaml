@@ -119,7 +119,7 @@ Resources:
     Type: "AWS::Events::Rule"
     Properties:
       Name: "tines-guardduty-finding"
-      Description: "CloudWatch Events rule that's triggered by Amazon GuardDuty findings. The rule sends GuardDuty findings to SNS and Tines."
+      Description: "EventBridge rule that's triggered by Amazon GuardDuty findings. The rule sends GuardDuty findings to SNS and Tines."
       State: "ENABLED"
       Targets:
         - Arn:
