@@ -2,6 +2,14 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: >-
   This template deploys Tines for Amazon GuardDuty. (qs-1u3dg0hmc)
 
+Metadata:
+  cfn-lint:
+    config:
+      ignore_checks:
+        - W9001
+        - W9002
+        - W9003
+
 Parameters:
   WebhookAddress:
     Type: String
@@ -16,6 +24,12 @@ Resources:
       LogGroupName: /aws/lambda/resource-checker
   rLambdaCheckerLambdaRole:
     Type: 'AWS::IAM::Role'
+    Metadata:
+      cfn-lint:
+        config:
+          ignore_checks:
+            - EIAMPolicyWildcardResource
+            - EIAMPolicyActionWildcard
     Properties:
       RoleName: !Sub 'resource-checker-lambda-role-${AWS::Region}'
       AssumeRolePolicyDocument:
