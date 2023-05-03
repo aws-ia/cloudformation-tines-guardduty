@@ -1,11 +1,11 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: >-
-  This template deploys Tines GuardDuty (qs-1u3dg0hmc)
+  This template deploys Tines for Amazon GuardDuty. (qs-1u3dg0hmc)
 
 Parameters:
   WebhookAddress:
     Type: String
-    Description: Enter the Tines webhook address the SNS subscription will send to.
+    Description: Tines webhook address that the SNS subscription sends the GuardDuty findings to.
 
 Resources:
   rLambdaLogGroup:
@@ -48,7 +48,7 @@ Resources:
   resourceCheckerLambda:
     Type: 'AWS::Lambda::Function'
     Properties:
-      Description: Checks for resource type enabled and possibly name to exist
+      Description: Checks for resource type enabled and possibly name to exist.
       FunctionName: resource-checker
       Handler: index.lambda_handler
       Role: !GetAtt 
@@ -105,7 +105,7 @@ Resources:
     Type: "AWS::Events::Rule"
     Properties:
       Name: "tines-guardduty-finding"
-      Description: "A CloudWatch Event Rule that triggers on Amazon GuardDuty findings. The Event Rule is used to send GuardDuty findings to SNS and Tines."
+      Description: "CloudWatch Events rule that's triggered by Amazon GuardDuty findings. The rule sends GuardDuty findings to SNS and Tines."
       State: "ENABLED"
       Targets:
         - Arn:
